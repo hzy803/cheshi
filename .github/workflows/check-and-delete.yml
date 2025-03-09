@@ -1,0 +1,34 @@
+name: Check and Delete File 
+ 
+on:
+  schedule:
+    # 定时触发（每天UTC时间0点）
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 支持手动触发 
+ 
+jobs:
+  check-and-delete:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout repository 
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+ 
+      - name: Check if file exists 
+        id: check_file 
+        run: |
+          if [3](); then 
+            echo "exists=true" >> $GITHUB_OUTPUT 
+          else 
+            echo "exists=false" >> $GITHUB_OUTPUT 
+          fi 
+ 
+      - name: Delete file and push 
+        if: steps.check_file.outputs.exists  == 'true'
+        run: |
+          git rm cheshi/aaa.m3u 
+          git config --global user.name  "GitHub Actions"
+          git config --global user.email  "actions@github.com" 
+          git commit -m "Delete aaa.mu3" 
+          git push 
