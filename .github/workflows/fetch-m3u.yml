@@ -14,17 +14,17 @@ jobs:
       - name: Read list and download 
         run: |
           # 读取 liebiao.txt  内容（假设每行一个 URL）
-          URL1=$(sed -n '1p' cheshi/liebiao.txt) 
-          URL2=$(sed -n '2p' cheshi/liebiao.txt) 
+          URL1=$(sed -n '1p' liebiao.txt) 
+          URL2=$(sed -n '2p' liebiao.txt) 
           
           # 下载文件并保存 
-          curl -o cheshi/aaa1.m3u "$URL1"
-          curl -o cheshi/aaa2.m3u "$URL2"
+          curl -o aaa1.m3u "$URL1"
+          curl -o aaa2.m3u "$URL2"
 
       - name: Commit and push 
         run: |
           git config --global user.name  "GitHub Actions"
           git config --global user.email  "actions@github.com" 
-          git add cheshi/aaa*.m3u
+          git add aaa*.m3u
           git commit -m "Auto-update m3u files"
           git push 
