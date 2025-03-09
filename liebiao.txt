@@ -1,2 +1,2 @@
-URL1=https://live.hacks.tools/tv/ipv4/categories/地方频道.m3u
-URL2=https://live.hacks.tools/tv/ipv4/categories/综艺频道.m3u
+https://live.hacks.tools/tv/ipv4/categories/地方频道.m3u
+https://live.hacks.tools/tv/ipv4/categories/综艺频道.m3u
