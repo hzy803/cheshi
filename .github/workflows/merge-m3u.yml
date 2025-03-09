@@ -1,9 +1,6 @@
 name: Merge M3U Files 
  
-on:
-  schedule:
-    # 定时触发（每天UTC时间0点）
-    - cron: '0 0 * * *'
+on: 
   workflow_dispatch: # 支持手动触发 
  
 jobs:
