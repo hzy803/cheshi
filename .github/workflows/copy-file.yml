@@ -1,0 +1,26 @@
+name: Copy File Content 
+on:
+  push:
+    branches: [main]  # 触发分支，根据实际需求修改 
+jobs:
+  copy-content:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout code 
+        uses: actions/checkout@v4  # 检出代码到工作目录 
+ 
+      - name: Copy file content 
+        run: |
+          # 复制内容（覆盖模式）
+          cp liebiao.txt  aa1.m3u 
+          # 或者追加内容（若需保留原内容）
+          # cat liebiao.txt  >> aa1.m3u 
+ 
+      - name: Commit and push changes 
+        # 可选：如果需要将修改后的文件提交回仓库 
+        run: |
+          git config --global user.name  "GitHub Actions"
+          git config --global user.email  "actions@github.com" 
+          git add aa1.m3u 
+          git commit -m "Update aa1.m3u via GitHub Actions"
+          git push 
