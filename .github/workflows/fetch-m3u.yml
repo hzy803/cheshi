@@ -17,7 +17,7 @@ jobs:
           while read url; do 
             curl -s -o "cheshi/bbb$i.m3u" "$url"
             ((i++))
-          done < cheshi/liebiao.txt  
+          done < liebiao.txt  
 
       - name: Commit changes 
         run: |
