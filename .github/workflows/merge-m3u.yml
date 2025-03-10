@@ -55,7 +55,7 @@ jobs:
                 print(f"Error processing {url}: {str(e)}")
  
         # 生成最终文件 
-        with open('bbb.m3u', 'w') as f:
+        with open('cheshi/bbb.m3u', 'w') as f:
             f.write('#EXTM3U\n') 
             f.write('\n'.join(merged_content)) 
         EOF 
@@ -66,6 +66,6 @@ jobs:
       run: |
         git config --global user.name  "GitHub Actions"
         git config --global user.email  "actions@github.com" 
-        git add bbb.m3u 
+        git add cheshi/bbb.m3u 
         git commit -m "Auto update merged m3u file"
         git push 
