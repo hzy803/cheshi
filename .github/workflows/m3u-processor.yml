@@ -34,7 +34,7 @@ jobs:
  
       - name: Filter updateTime lines 
         run: |
-          sed -i '/updateTime*/d' cheshi/bbb.m3u 
+          sed -i '/updateTime*/d' bbb.m3u 
  
       - name: Commit changes 
         uses: stefanzweifel/git-auto-commit-action@v5
