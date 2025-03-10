@@ -19,14 +19,14 @@ jobs:
 
     - name: Check and delete file 
       run: |
-        if [ -f "bbb.m3u" ]; then 
-          git rm bbb.m3u 
+        if [ -f "ipv4直播源.m3u" ]; then 
+          git rm ipv4直播源.m3u 
           git config --global user.name  "github-actions[bot]"
           git config --global user.email  "github-actions[bot]@users.noreply.github.com" 
-          git commit -m "Automatically delete bbb.mu3" 
+          git commit -m "Automatically delete ipv4直播源.mu3" 
           git push origin HEAD:${{ github.ref  }}
         else 
-          echo "File bbb.m3u does not exist."
+          echo "File ipv4直播源.m3u does not exist."
         fi  
  
     - name: Merge and process files 
@@ -44,8 +44,8 @@ jobs:
         done < liebiao.txt  
  
         # 合并文件并删除updateTime行
-        cat tmp_m3u/*.m3u > bbb.m3u 
-        sed -i '/updateTime/d' bbb.m3u 
+        cat tmp_m3u/*.m3u > ipv4直播源.m3u 
+        sed -i '/updateTime/d' ipv4直播源.m3u 
  
         # 清理临时文件 
         rm -rf tmp_m3u 
@@ -54,6 +54,6 @@ jobs:
       run: |
         git config --global user.name  "GitHub Actions"
         git config --global user.email  "actions@github.com" 
-        git add bbb.m3u 
+        git add ipv4直播源.m3u 
         git commit -m "Auto update merged M3U file"
         git push 
