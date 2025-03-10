@@ -1,0 +1,44 @@
+name: Merge M3U Files 
+ 
+on:
+  push:
+    paths:
+      - 'liebiao.txt'  # 仅当liebiao.txt 变动时触发 
+  schedule:
+    - cron: '0 0 * * *' # 每天UTC时间0点自动运行[1]()[8]()
+ 
+jobs:
+  process-m3u:
+    runs-on: ubuntu-latest 
+    steps:
+    - name: Checkout code 
+      uses: actions/checkout@v4
+ 
+    - name: Merge and process files 
+      run: |
+        # 安装必要工具 
+        sudo apt-get install -y curl 
+ 
+        # 创建临时目录 
+        mkdir -p tmp_m3u 
+ 
+        # 逐行读取liebiao.txt 并下载文件 
+        while IFS= read -r url; do 
+          filename=$(basename "$url")
+          curl -s "$url" -o "tmp_m3u/${filename}"
+        done < liebiao.txt  
+ 
+        # 合并文件并删除updateTime行
+        cat tmp_m3u/*.m3u > bbb.m3u 
+        sed -i '/updateTime/d' bbb.m3u 
+ 
+        # 清理临时文件 
+        rm -rf tmp_m3u 
+ 
+    - name: Commit changes 
+      run: |
+        git config --global user.name  "GitHub Actions"
+        git config --global user.email  "actions@github.com" 
+        git add bbb.m3u 
+        git commit -m "Auto update merged M3U file"
+        git push 
