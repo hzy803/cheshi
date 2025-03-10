@@ -1,6 +1,7 @@
 name: Merge M3U Files 
  
 on:
+  workflow_dispatch: # 支持手动触发
   push:
     paths:
       - 'liebiao.txt'  # 仅当liebiao.txt 变动时触发 
