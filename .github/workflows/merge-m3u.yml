@@ -1,0 +1,33 @@
+name: Merge M3U Files 
+ 
+on:
+  workflow_dispatch: # 允许手动触发 
+ 
+jobs:
+  process-m3u:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout repository 
+        uses: actions/checkout@v4
+ 
+      - name: Merge and filter files 
+        run: |
+          # 读取列表文件并合并内容 
+          while read file_path; do 
+            if ; then 
+              cat "$file_path" >> combined.m3u 
+            fi 
+          done < liebiao.txt  
+ 
+          # 删除包含"updateTime"的行 
+          grep -v '^updateTime' combined.m3u > filtered.m3u 
+ 
+          # 移动最终文件到目标位置 
+          mkdir -p cheshi 
+          mv filtered.m3u cheshi/bbb.m3u 
+ 
+      - name: Commit changes 
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-merged m3u files"
+          file_pattern: cheshi/bbb.m3u 
