@@ -11,23 +11,23 @@ jobs:
     permissions:
       contents: write  # 需要写入权限以提交更改
  
-  steps:
+    steps:
     - name: Checkout code 
       uses: actions/checkout@v4
       with:
           fetch-depth: 0  # 拉取完整历史记录
 
     - name: Check and delete file 
-        run: |
-          if [ -f "bbb.m3u" ]; then 
-            git rm bbb.m3u 
-            git config --global user.name  "github-actions[bot]"
-            git config --global user.email  "github-actions[bot]@users.noreply.github.com" 
-            git commit -m "Automatically delete bbb.mu3" 
-            git push origin HEAD:${{ github.ref  }}
-          else 
-            echo "File bbb.m3u does not exist."
-          fi  
+      run: |
+        if [ -f "bbb.m3u" ]; then 
+          git rm bbb.m3u 
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email  "github-actions[bot]@users.noreply.github.com" 
+          git commit -m "Automatically delete bbb.mu3" 
+          git push origin HEAD:${{ github.ref  }}
+        else 
+          echo "File bbb.m3u does not exist."
+        fi  
  
     - name: Merge and process files 
       run: |
