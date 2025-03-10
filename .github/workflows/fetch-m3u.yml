@@ -15,7 +15,7 @@ jobs:
         run: |
           i=1 
           while read url; do 
-            curl -s -o "cheshi/bbb$i.m3u" "$url"
+            curl -s -o "bbb$i.m3u" "$url"
             ((i++))
           done < liebiao.txt  
 
@@ -23,6 +23,6 @@ jobs:
         run: |
           git config --global user.name  "GitHub Actions"
           git config --global user.email  "actions@github.com" 
-          git add cheshi/bbb*.m3u
+          git add bbb*.m3u
           git commit -m "Auto-update M3U files"
           git push 
