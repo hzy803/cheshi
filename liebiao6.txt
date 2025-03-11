@@ -1,0 +1,3 @@
+https://live.hacks.tools/tv/ipv4/categories/hong_kong.m3u
+https://live.hacks.tools/tv/ipv4/categories/macau.m3u
+https://live.hacks.tools/tv/ipv4/categories/taiwan.m3u
