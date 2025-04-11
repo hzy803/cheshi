@@ -12,4 +12,4 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_KEY }}
         with:
           source-repo: git@github.com:hzy803/cheshi.git  
-          destination-repo: git@gitee.com: Kat-tun远远/hzy803.git  
+          destination-repo: git@gitee.com:Kat-tun远远/hzy803.git  
