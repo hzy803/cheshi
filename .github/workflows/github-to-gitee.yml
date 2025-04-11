@@ -1,0 +1,35 @@
+name: 同步ipv4直播源到Gitee
+ 
+on:
+  push:
+    branches: [main]  # 监听的分支（根据实际分支修改）
+    paths:  # 监听的文件路径 
+      - 'ipv4直播源.m3u'
+ 
+jobs:
+  sync-to-gitee:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: 检出代码 
+        uses: actions/checkout@v4
+ 
+      - name: 设置Gitee凭证 
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_SSH_KEY }}  # 需在GitHub仓库设置机密 
+          GITEE_REPO: 'https://gitee.com/hzy803/hzy803.git' 
+ 
+      - name: 配置Git用户 
+        run: |
+          git config --global user.name  'your-gitee-username'
+          git config --global user.email  'your-gitee-email'
+ 
+      - name: 添加Gitee远程仓库 
+        run: |
+          git remote add gitee ${GITEE_REPO}
+          git fetch gitee
+ 
+      - name: 提交并推送文件 
+        run: |
+          git add ipv4直播源.m3u 
+          git commit -m '自动同步ipv4直播源.m3u'
+          git push --set-upstream gitee main:master  # 主分支映射（根据实际情况调整）
