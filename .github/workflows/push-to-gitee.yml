@@ -1,0 +1,41 @@
+name: Push to Gitee on File Update 
+ 
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ipv4直播源.m3u'
+ 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout code 
+        uses: actions/checkout@v3
+ 
+      - name: Setup SSH Key 
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh 
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa 
+          chmod 600 ~/.ssh/id_rsa 
+          ssh-keyscan git.code.tencent.com  >> ~/.ssh/known_hosts 
+ 
+      - name: Clone Gitee Repository 
+        run: git clone git@git.code.tencent.com:hzy803/hzy803.git  
+ 
+      - name: Copy File 
+        run: cp ipv4直播源.m3u hzy803/
+ 
+      - name: Commit and Push 
+        working-directory: hzy803
+        run: |
+          git config --global user.name  "hzy803"
+          git config --global user.email  "your@email.com" 
+          git add ipv4直播源.m3u 
+          git commit -m "Auto update from GitHub Actions"
+          git push origin master 
+```
+ 
+通过以上配置，GitHub Actions将在检测到目标文件更新时自动同步到Gitee仓库。如需进一步优化，可添加错误处理或定时任务功能[5]()[11]()。 
