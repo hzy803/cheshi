@@ -1,0 +1,30 @@
+name: github to Gitee
+on:
+  push:
+    paths:
+      - 'ipv4直播源.m3u'  # 仅当该文件更新时触发 
+    branches:
+      - main  # 根据实际分支修改（如master）
+ 
+jobs:
+  sync:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout code 
+        uses: actions/checkout@v4
+ 
+      - name: Set up SSH key 
+        uses: webfactory/ssh-agent@v0.5.6
+        with:
+          ssh-private-key: ${{ secrets.GITEE_SSH_KEY }}  # 使用GitHub Secrets存储的Gitee私钥
+ 
+      - name: github to Gitee
+        run: |
+          git config --global user.name  "your-gitee-username"
+          git config --global user.email  "your-gitee@email.com" 
+          git remote add gitee ssh://git@gitee.com/hzy803/hzy803.git  
+          git fetch gitee
+          git checkout master  # 确保在目标分支 
+          git add ipv4直播源.m3u 
+          git commit -m "Auto sync from GitHub: $(date +%Y-%m-%d)"
+          git push gitee master 
