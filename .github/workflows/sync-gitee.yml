@@ -1,15 +1,16 @@
-name: SyncToGitee
-on:
-  push:
-    branches: [main]  # 修改为你的目标分支 
+name: Sync to Gitee
+on: [push] # 触发条件：代码推送时同步 
+
 jobs:
-  build:
+  sync:
     runs-on: ubuntu-latest 
     steps:
-      - name: Sync to Gitee
+      - name: Mirror to Gitee
         uses: wearerequired/git-mirror-action@master 
         env:
           SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_KEY }}
         with:
-          source-repo: git@github.com:hzy803/cheshi.git  
-          destination-repo: git@gitee.com:Kat-tun远远/hzy803.git  
+          # 源仓库（GitHub的SSH地址）
+          source-repo: "git@github.com:hzy803/cheshi.git"
+          # 目标仓库（Gitee的SSH地址）
+          destination-repo: "git@gitee.com:Kat-tun远远/hzy803.git"
