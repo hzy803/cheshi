@@ -13,4 +13,4 @@ jobs:
           # 源仓库（GitHub的SSH地址）
           source-repo: "git@github.com:hzy803/cheshi.git"
           # 目标仓库（Gitee的SSH地址）
-          destination-repo: "git@gitee.com:Kat-tun远远/hzy803.git"
+          destination-repo: "git@gitee.com:ED25519/hzy803.git"
