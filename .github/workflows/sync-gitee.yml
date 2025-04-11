@@ -22,5 +22,5 @@ jobs:
         uses: wearerequired/git-mirror-action@master
         if: env.SSH_PRIVATE_KEY
         with:
-          source-repo: "git@github.com:${{ github.repository }}.git"
+          source-repo: "git@github.com:hzy803/cheshi.git"
           destination-repo: "git@gitee.com:Kat-tun远远/cheshi.git"
