@@ -14,4 +14,3 @@ jobs:
           source-repo: "git@github.com: 你的用户名/仓库名.git"
           # 目标仓库（Gitee的SSH地址）
           destination-repo: "git@gitee.com: 你的Gitee用户名/仓库名.git"
-``` ```[1]()[3]()[6]()
