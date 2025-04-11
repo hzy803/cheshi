@@ -11,6 +11,6 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_KEY }}
         with:
           # 源仓库（GitHub的SSH地址）
-          source-repo: "git@github.com: 你的用户名/仓库名.git"
+          source-repo: "git@github.com: hzy803/cheshi.git"
           # 目标仓库（Gitee的SSH地址）
-          destination-repo: "git@gitee.com: 你的Gitee用户名/仓库名.git"
+          destination-repo: "git@gitee.com:  Kat-tun远远/hzy803.git"
