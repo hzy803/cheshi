@@ -35,7 +35,4 @@ jobs:
           git config --global user.email  "your@email.com" 
           git add ipv4直播源.m3u 
           git commit -m "Auto update from GitHub Actions"
-          git push origin master 
-```
- 
-通过以上配置，GitHub Actions将在检测到目标文件更新时自动同步到Gitee仓库。如需进一步优化，可添加错误处理或定时任务功能[5]()[11]()。 
+          git push origin master
