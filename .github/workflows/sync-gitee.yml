@@ -1,0 +1,15 @@
+name: SyncToGitee
+on:
+  push:
+    branches: [main]  # 修改为你的目标分支 
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Sync to Gitee
+        uses: wearerequired/git-mirror-action@master 
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_KEY }}
+        with:
+          source-repo: git@github.com:hzy803/cheshi.git  
+          destination-repo: git@gitee.com: Kat-tun远远/hzy803.git  
