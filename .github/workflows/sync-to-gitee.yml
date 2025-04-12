@@ -1,0 +1,13 @@
+name: Sync to Gitee
+on: [push]
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mirror to Gitee
+        uses: wearerequired/git-mirror-action@v1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_KEY }}
+        with:
+          source-repo: "git@github.com:hzy803/repo.git" 
+          destination-repo: "git@gitee.com:hzy0613/repo.git" 
