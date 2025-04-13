@@ -1,18 +1,25 @@
-name: Sync to Gitee
+name: Sync GitHub to Gitee
 on:
   push:
-    branches: [master]
+    branches: [main]  # 同步分支（可修改为需要的分支）
+ 
 jobs:
   sync:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest 
     steps:
-      - uses: actions/checkout@v4
-      - name: Sync to Gitee
+      - name: Checkout code 
+        uses: actions/checkout@v4
+ 
+      - name: Setup SSH 
         env:
-          SSH_KEY: ${{ secrets.GITEE_SSH_KEY }}
-          REPO_URL: ${{ secrets.GITEE_REPO_URL }}
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_KEY }}
         run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          git push "$REPO_URL" HEAD:master
+          ssh-keyscan gitee.com  >> ~/.ssh/known_hosts 
+ 
+      - name: Sync to Gitee
+        run: |
+          git config --global user.name  "hzy0613"
+          git remote add gitee $GITEE_REPO_URL 
+          git push --force gitee HEAD:main  # 强制同步覆盖 
