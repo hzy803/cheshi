@@ -1,0 +1,18 @@
+name: Sync to Gitee
+on:
+  push:
+    branches: [master]
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sync to Gitee
+        env:
+          SSH_KEY: ${{ secrets.GITEE_SSH_KEY }}
+          REPO_URL: ${{ secrets.GITEE_REPO_URL }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          git push "$REPO_URL" HEAD:master
