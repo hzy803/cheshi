@@ -20,6 +20,6 @@ jobs:
  
       - name: Sync to Gitee
         run: |
-          git config --global user.name  "hzy0613"
-          git remote add gitee $GITEE_REPO_URL 
-          git push --force gitee HEAD:main  # 强制同步覆盖 
+          git config --global user.name  "Your Name"
+          git remote add gitee $GITEE_REPO_URL
+          git push --force gitee HEAD:main  # 强制同步覆盖
