@@ -19,7 +19,7 @@ jobs:
  
       - name: Add Gitee Remote 
         run: |
-          git remote add gitee ssh://git@gitee.com:hzy0613/cheshi.git   # 替换为你的 Gitee 仓库地址 
+          git remote add gitee ssh://git@gitee.com:hzy0613/cheshi/master.git   # 替换为你的 Gitee 仓库地址 
           git fetch gitee  # 获取 Gitee 远程仓库信息 
  
       - name: Push to Gitee Master 
