@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4  # 检出代码到 Actions 运行器 
  
       - name: Setup SSH Key 
-        uses: webfactory/ssh-agent@v1
+        uses: webfactory/ssh-agent@v0.6.0
         with:
           ssh-private-key: ${{ secrets.GITEE_SSH_KEY }}  # 使用 GitHub Secrets 存储的 Gitee 私钥 
  
